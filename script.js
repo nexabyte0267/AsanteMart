@@ -1,11 +1,5 @@
 /**
- * AsanteMart Storefront Engine (ES6+ Vanilla JS)
- * Features:
- * - Self-contained SVG artwork generator (zero broken external image links)
- * - Live search, category filtering & sorting
- * - Real-time inventory validation & localStorage stock persistence
- * - Weight-tiered delivery zone fee calculator
- * - Checkout validation, stock deduction, Order ID generation & WhatsApp forwarding
+ * AsanteMart Storefront Engine (ES6+ Vanilla JS) — Phase 1
  */
 
 (() => {
@@ -17,10 +11,11 @@
   const STORE_CONFIG = {
     name: 'AsanteMart',
     currency: 'GHS',
-    whatsappNumber: '233245550194',
-    displayPhone: '+233 24 555 0194',
-    email: 'hello@asantemart.com',
+    whatsappNumber: '233548463340',
+    displayPhone: '+233 54 846 3340',
+    email: 'nexabytesolutions07@gmail.com',
     location: 'Ejisu & Kumasi, Ghana',
+    freeShippingThreshold: 400, // GHS — Phase 1
   };
 
   const STORAGE_KEYS = {
@@ -96,23 +91,46 @@
     if (!cartItems.length || zone.id === 'pickup') {
       return { fee: 0, note: zone.description, hasHeavy: false };
     }
-    let totalUnits = 0, hasHeavy = false;
+
+    let totalUnits = 0, hasHeavy = false, cartSubtotal = 0;
     cartItems.forEach((item) => {
       totalUnits += item.qty;
       const prod = productsMap.get(item.productId);
-      if (prod && prod.weightTier === 'heavy') hasHeavy = true;
+      if (prod) {
+        cartSubtotal += prod.price * item.qty;
+        if (prod.weightTier === 'heavy') hasHeavy = true;
+      }
     });
+
+    // PHASE 1: free rider delivery over threshold (local zone only)
+    if (zone.id === 'local' && cartSubtotal >= STORE_CONFIG.freeShippingThreshold) {
+      let fee = 0;
+      const notes = [`FREE rider delivery unlocked (${formatMoney(cartSubtotal)} ≥ ${formatMoney(STORE_CONFIG.freeShippingThreshold)})`];
+      if (hasHeavy && zone.heavySurcharge > 0) {
+        fee += zone.heavySurcharge;
+        notes.push(`+${formatMoney(zone.heavySurcharge)} heavy item handling`);
+      }
+      return { fee, note: notes.join(' • '), hasHeavy };
+    }
+
     let fee = zone.baseFee;
     const notes = [`Base: ${formatMoney(zone.baseFee)}`];
+
     if (zone.id === 'regional' && totalUnits > 1) {
       const extraFee = (totalUnits - 1) * zone.regionalPerItem;
       fee += extraFee;
       notes.push(`+${formatMoney(extraFee)} (${totalUnits - 1} extra item${totalUnits - 1 > 1 ? 's' : ''})`);
     }
+
     if (hasHeavy && zone.heavySurcharge > 0) {
       fee += zone.heavySurcharge;
       notes.push(`+${formatMoney(zone.heavySurcharge)} heavy item handling`);
     }
+
+    if (zone.id === 'local' && cartSubtotal > 0 && cartSubtotal < STORE_CONFIG.freeShippingThreshold) {
+      notes.push(`Add ${formatMoney(STORE_CONFIG.freeShippingThreshold - cartSubtotal)} more for FREE rider delivery`);
+    }
+
     return { fee, note: notes.join(' • '), hasHeavy };
   }
 
@@ -123,7 +141,10 @@
     products: [],
     cart: [],
     deliveryZone: 'local',
-    filters: { category: 'All', search: '', sort: 'featured' },
+    filters: {
+      category: 'All', search: '', sort: 'featured',
+      inStockOnly: false, priceMin: null, priceMax: null,
+    },
     lastOrder: null,
   };
 
@@ -189,7 +210,7 @@
       .replace(/"/g, '&quot;');
   }
 
-  /* Modal open/close helpers + body scroll lock */
+  /* Modal open/close + focus save/restore + body scroll lock */
   function syncBodyScrollLock() {
     const anyModalOpen = document.querySelector('.modal:not(.hidden)');
     const cartOpen = document.querySelector('.cart-drawer:not([hidden])');
@@ -198,33 +219,46 @@
   function openModal(id) {
     const modal = document.getElementById(id);
     if (!modal) return;
+    modal._previousFocus = document.activeElement;
     modal.classList.remove('hidden');
     syncBodyScrollLock();
+    const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    focusable?.focus();
   }
   function closeModal(id) {
     const modal = document.getElementById(id);
     if (!modal) return;
     modal.classList.add('hidden');
     syncBodyScrollLock();
+    if (modal._previousFocus && typeof modal._previousFocus.focus === 'function') {
+      modal._previousFocus.focus();
+      modal._previousFocus = null;
+    }
   }
 
   /* ==========================================================================
      7. CATALOG RENDERING
      ========================================================================== */
   function getFilteredProducts() {
-    const { category, search, sort } = state.filters;
+    const { category, search, sort, inStockOnly, priceMin, priceMax } = state.filters;
     const query = search.trim().toLowerCase();
+
     const filtered = state.products.filter((prod) => {
       const matchesCat = category === 'All' || prod.category === category;
       if (!matchesCat) return false;
+      if (inStockOnly && prod.stock <= 0) return false;
+      if (priceMin != null && prod.price < priceMin) return false;
+      if (priceMax != null && prod.price > priceMax) return false;
       if (!query) return true;
       const haystack = [prod.title, prod.category, prod.sku, prod.shortDesc, prod.fullDesc, ...(prod.specs || [])]
         .join(' ').toLowerCase();
       return haystack.includes(query);
     });
+
     if (sort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
     else if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
     else if (sort === 'name-asc') filtered.sort((a, b) => a.title.localeCompare(b.title));
+    else if (sort === 'newest') filtered.reverse();
     return filtered;
   }
 
@@ -652,7 +686,7 @@
       <p>Orders placed before 3:00 PM GMT on business days are dispatched the same day.</p>
       <ul>
         <li><strong>Store Pickup (Free):</strong> Ready within 2 hours at Ejisu Hub or Adum point.</li>
-        <li><strong>Same-City Rider (GHS 25):</strong> Ejisu &amp; Greater Kumasi — usually 1–4 hours after dispatch. Heavy appliances add GHS 15 handling.</li>
+        <li><strong>Same-City Rider (GHS 25):</strong> Ejisu &amp; Greater Kumasi — usually 1–4 hours after dispatch. Heavy appliances add GHS 15 handling. <strong>FREE rider delivery on orders GHS 400+.</strong></li>
         <li><strong>Regional / Intercity (from GHS 55):</strong> Accra, Takoradi, Tamale and other regions — 24 to 48 hours via partner couriers. Extra items add GHS 8 each; heavy cargo adds GHS 25.</li>
       </ul>`,
     returns: `
@@ -671,7 +705,7 @@
         <li>Your data is used to process orders, coordinate deliveries, and provide customer support.</li>
         <li>We never sell or rent your personal data to third parties.</li>
         <li>Payment details are handled by licensed payment processors — we do not store card numbers.</li>
-        <li>You may request deletion of your data by emailing hello@asantemart.com.</li>
+        <li>You may request deletion of your data by emailing ${STORE_CONFIG.email}.</li>
       </ul>`,
     terms: `
       <h3>Terms of Service</h3>
@@ -706,13 +740,30 @@
     VIEWS.forEach((v) => document.getElementById(`view-${v}`)?.classList.toggle('active', v === route));
     document.querySelectorAll('[data-route]').forEach((el) => {
       el.classList.toggle('active', el.dataset.route === route);
+      if (el.dataset.route === route) el.setAttribute('aria-current', 'page');
+      else el.removeAttribute('aria-current');
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (window.location.hash !== `#${route}`) history.replaceState(null, '', `#${route}`);
   }
 
   /* ==========================================================================
-     13. EVENT WIRING
+     13. BREADCRUMBS
+     ========================================================================== */
+  function updateBreadcrumbs() {
+    const nav = document.getElementById('breadcrumbs');
+    if (!nav) return;
+    const activeCat = document.querySelector('.tab-btn.active')?.dataset.category || 'All';
+    const parts = ['Home'];
+    if (activeCat && activeCat !== 'All') parts.push(activeCat);
+    nav.innerHTML = parts.map((p, i) => i < parts.length - 1
+      ? `<a href="#shop" data-route="shop">${p}</a><span aria-hidden="true"> › </span>`
+      : `<span aria-current="page">${p}</span>`
+    ).join(' ');
+  }
+
+  /* ==========================================================================
+     14. EVENT WIRING
      ========================================================================== */
   function initRouting() {
     document.querySelectorAll('[data-route]').forEach((el) => {
@@ -731,10 +782,13 @@
     const sortSelect = document.getElementById('sortSelect');
     const resetBtn = document.getElementById('resetFiltersBtn');
     const grid = document.getElementById('productGrid');
+    const inStockToggle = document.getElementById('inStockToggle');
+    const priceMinInput = document.getElementById('priceMin');
+    const priceMaxInput = document.getElementById('priceMax');
 
     searchInput?.addEventListener('input', () => {
       state.filters.search = searchInput.value;
-      clearBtn.classList.toggle('hidden', !searchInput.value);
+      clearBtn?.classList.toggle('hidden', !searchInput.value);
       renderCatalog();
     });
     clearBtn?.addEventListener('click', () => {
@@ -749,6 +803,21 @@
       renderCatalog();
     });
 
+    inStockToggle?.addEventListener('change', () => {
+      state.filters.inStockOnly = inStockToggle.checked;
+      renderCatalog();
+    });
+
+    function updatePriceFilter() {
+      const min = priceMinInput?.value ? Number(priceMinInput.value) : null;
+      const max = priceMaxInput?.value ? Number(priceMaxInput.value) : null;
+      state.filters.priceMin = Number.isFinite(min) && min >= 0 ? min : null;
+      state.filters.priceMax = Number.isFinite(max) && max >= 0 ? max : null;
+      renderCatalog();
+    }
+    priceMinInput?.addEventListener('input', updatePriceFilter);
+    priceMaxInput?.addEventListener('input', updatePriceFilter);
+
     document.querySelectorAll('.tab-btn[data-category]').forEach((btn) => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn[data-category]').forEach((b) => {
@@ -758,20 +827,28 @@
         });
         state.filters.category = btn.dataset.category;
         renderCatalog();
+        updateBreadcrumbs();
       });
     });
 
     resetBtn?.addEventListener('click', () => {
-      state.filters = { category: 'All', search: '', sort: 'featured' };
-      searchInput.value = '';
-      sortSelect.value = 'featured';
-      clearBtn.classList.add('hidden');
+      state.filters = {
+        category: 'All', search: '', sort: 'featured',
+        inStockOnly: false, priceMin: null, priceMax: null,
+      };
+      if (searchInput) searchInput.value = '';
+      if (sortSelect) sortSelect.value = 'featured';
+      clearBtn?.classList.add('hidden');
+      if (inStockToggle) inStockToggle.checked = false;
+      if (priceMinInput) priceMinInput.value = '';
+      if (priceMaxInput) priceMaxInput.value = '';
       document.querySelectorAll('.tab-btn[data-category]').forEach((b) => {
         const active = b.dataset.category === 'All';
         b.classList.toggle('active', active);
         b.setAttribute('aria-selected', active ? 'true' : 'false');
       });
       renderCatalog();
+      updateBreadcrumbs();
     });
 
     grid?.addEventListener('click', (e) => {
@@ -865,7 +942,7 @@
   }
 
   /* ==========================================================================
-     14. BOOT
+     15. BOOT
      ========================================================================== */
   function init() {
     loadPersistedState();
@@ -873,6 +950,7 @@
     if (yearEl) yearEl.textContent = new Date().getFullYear();
     renderCatalog();
     renderCart();
+    updateBreadcrumbs();
     initRouting();
     initCatalogEvents();
     initCartEvents();
@@ -887,4 +965,110 @@
   } else {
     init();
   }
+
+  /* ==========================================================================
+     16. PUBLIC BRIDGE — used by Phase 1 enhancement module below
+     ========================================================================== */
+  window.AsanteMart = {
+    openProductDetail, addToCart, openCartDrawer,
+    showToast, getProductsMap, formatMoney, escapeHTML,
+  };
+})();
+
+/* ==========================================================================
+   PHASE 1 ENHANCEMENTS
+   Recently viewed · focus trap · newsletter · WhatsApp click tracking
+   ========================================================================== */
+(() => {
+  'use strict';
+  const AM = window.AsanteMart;
+  if (!AM) return;
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  /* ---- 1. Recently viewed ------------------------------------------------ */
+  const RV_KEY = 'asantemart_recent_v1';
+  const RV_MAX = 6;
+
+  function getRecentlyViewed() {
+    try { return JSON.parse(localStorage.getItem(RV_KEY)) || []; }
+    catch { return []; }
+  }
+  function pushRecentlyViewed(id) {
+    if (!id) return;
+    const list = getRecentlyViewed().filter((x) => x !== id);
+    list.unshift(id);
+    localStorage.setItem(RV_KEY, JSON.stringify(list.slice(0, RV_MAX)));
+    renderRecentlyViewed();
+  }
+  function renderRecentlyViewed() {
+    const section = $('#recentlyViewedSection');
+    const track = $('#recentlyViewedTrack');
+    if (!section || !track) return;
+    const map = AM.getProductsMap();
+    const items = getRecentlyViewed().map((id) => map.get(id)).filter(Boolean);
+    if (!items.length) { section.classList.add('hidden'); return; }
+    section.classList.remove('hidden');
+    track.innerHTML = items.map((p) => `
+      <button type="button" class="rv-card" data-id="${p.id}" aria-label="View ${AM.escapeHTML(p.title)}">
+        <img src="${p.image}" alt="" loading="lazy" />
+        <div>
+          <strong>${AM.escapeHTML(p.title)}</strong>
+          <span class="muted-text">${AM.formatMoney(p.price)}</span>
+        </div>
+      </button>`).join('');
+  }
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-action="view-detail"], .card-title, .rv-card[data-id]');
+    if (!trigger) return;
+    const id = trigger.dataset.id || trigger.closest('[data-product-id]')?.dataset.productId;
+    if (id) pushRecentlyViewed(id);
+  }, true);
+  document.addEventListener('click', (e) => {
+    const rv = e.target.closest('.rv-card[data-id]');
+    if (!rv) return;
+    AM.openProductDetail(rv.dataset.id);
+  });
+  renderRecentlyViewed();
+
+  /* ---- 2. Focus trap for open modals ------------------------------------ */
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const modal = document.querySelector('.modal:not(.hidden)');
+    if (!modal) return;
+    const focusables = modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ---- 3. Newsletter (local for now; Phase 3 wires to backend) ---------- */
+  $('#newsletterForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const phone = $('#newsletterPhone').value.trim();
+    const fb = $('#newsletterFeedback');
+    if (phone.replace(/\D/g, '').length < 9) {
+      fb.textContent = 'Please enter a valid WhatsApp number.';
+      fb.style.color = 'var(--color-danger)';
+      return;
+    }
+    try {
+      const subs = JSON.parse(localStorage.getItem('asantemart_subs_v1')) || [];
+      if (!subs.includes(phone)) subs.push(phone);
+      localStorage.setItem('asantemart_subs_v1', JSON.stringify(subs));
+    } catch { /* quota */ }
+    fb.textContent = 'Thanks! We will WhatsApp you when new stock lands.';
+    fb.style.color = 'var(--color-success)';
+    e.target.reset();
+  });
+
+  /* ---- 4. WhatsApp click tracking placeholder --------------------------- */
+  $('.whatsapp-float')?.addEventListener('click', () => {
+    if (window.gtag) window.gtag('event', 'whatsapp_click', { source: 'float' });
+  });
 })();
