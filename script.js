@@ -17,7 +17,7 @@
   const STORE_CONFIG = {
     name: 'AsanteMart',
     currency: 'GHS',
-    whatsappNumber: '233245550194', // International format without '+'
+    whatsappNumber: '233245550194',
     displayPhone: '+233 24 555 0194',
     email: 'hello@asantemart.com',
     location: 'Ejisu & Kumasi, Ghana',
@@ -31,7 +31,7 @@
   };
 
   /* ==========================================================================
-     2. SVG ARTWORK HELPER (Guaranteed crisp, unbreakable product visuals)
+     2. SVG ARTWORK HELPER
      ========================================================================== */
   function createProductArt(bgHex, accentHex, label, iconType) {
     const icons = {
@@ -63,336 +63,81 @@
   }
 
   /* ==========================================================================
-     3. STARTER PRODUCT CATALOG (14 Multi-Category Items)
+     3. STARTER PRODUCT CATALOG
      ========================================================================== */
   const INITIAL_PRODUCTS = [
-    // --- Home & Kitchen (4) ---
-    {
-      id: 'hk-01',
-      title: 'Binatone Heavy-Duty 1.5L Smoothie & Spice Blender',
-      category: 'Home & Kitchen',
-      sku: 'AM-HK-101',
-      price: 460.00,
-      compareAtPrice: 520.00,
-      stock: 11,
-      weightTier: 'heavy',
-      variants: ['Silver / Black', 'Matte White'],
-      shortDesc: '450W copper motor with unbreakable 1.5L jar and dry mill attachment for fufu flour, ginger & smoothies.',
-      fullDesc: 'Engineered for Ghanaian kitchens, this 450W heavy-duty blender crushes ice, blends tiger nuts, and grinds dry spices effortlessly using its dedicated stainless-steel dry mill.',
-      specs: ['450W Pure Copper Motor', '1.5L Unbreakable Polycarbonate Jar', 'Includes Dry Spice & Pepper Mill', '2 Speeds + Pulse Control', '1-Year Local Warranty'],
-      image: createProductArt('#0f766e', '#f59e0b', 'Home & Kitchen', 'blender'),
-    },
-    {
-      id: 'hk-02',
-      title: '2.0L Cordless Stainless Steel Electric Kettle',
-      category: 'Home & Kitchen',
-      sku: 'AM-HK-102',
-      price: 185.00,
-      compareAtPrice: 220.00,
-      stock: 4, // Low stock example
-      weightTier: 'medium',
-      variants: ['Brushed Steel', 'Matte Black'],
-      shortDesc: 'Rapid-boil 1800W concealed heating element with automatic boil-dry shutoff.',
-      fullDesc: 'Boil 2 litres of water in under 5 minutes. Built with food-grade 304 stainless steel interior, 360-degree swivel base, and cool-touch ergonomic handle.',
-      specs: ['2.0 Litre Capacity', '1800W Fast-Boil Element', '304 Food-Grade Stainless Steel', 'Auto Shut-Off Safety'],
-      image: createProductArt('#115e59', '#fbbf24', 'Home & Kitchen', 'kettle'),
-    },
-    {
-      id: 'hk-03',
-      title: 'Granite Non-Stick 5-Piece Cookware Set',
-      category: 'Home & Kitchen',
-      sku: 'AM-HK-103',
-      price: 680.00,
-      compareAtPrice: 760.00,
-      stock: 6,
-      weightTier: 'heavy',
-      variants: ['Charcoal Granite', 'Burgundy Red'],
-      shortDesc: 'PFOA-free die-cast aluminum pots and frypan with tempered glass lids for gas & electric stoves.',
-      fullDesc: 'Cook jollof, stews, and sauces with minimal oil and zero sticking. Thick induction-compatible base distributes heat evenly without hot spots.',
-      specs: ['24cm Casserole + Lid', '20cm Saucepan + Lid', '24cm Deep Frypan', 'PFOA & Lead-Free Coating'],
-      image: createProductArt('#1e293b', '#d97706', 'Home & Kitchen', 'cookware'),
-    },
-    {
-      id: 'hk-04',
-      title: '750ml Double-Wall Vacuum Insulated Flask',
-      category: 'Home & Kitchen',
-      sku: 'AM-HK-104',
-      price: 110.00,
-      compareAtPrice: null,
-      stock: 18,
-      weightTier: 'light',
-      variants: ['Teal', 'Midnight Black', 'Sand'],
-      shortDesc: 'Keeps water ice-cold for 24 hours or tea piping hot for 12 hours on the go.',
-      fullDesc: 'Leak-proof screw cap with carry loop, sweat-free powder-coated exterior, and wide mouth for easy ice-cube filling.',
-      specs: ['750ml Capacity', '24h Cold / 12h Hot Retention', 'BPA-Free Leakproof Lid', 'Powder-Coated Grip'],
-      image: createProductArt('#0d9488', '#fef3c7', 'Home & Kitchen', 'flask'),
-    },
-
-    // --- Electronics & Accessories (4) ---
-    {
-      id: 'el-01',
-      title: 'Oraimo FreePods Neo True Wireless Earbuds',
-      category: 'Electronics & Accessories',
-      sku: 'AM-EL-201',
-      price: 245.00,
-      compareAtPrice: 290.00,
-      stock: 15,
-      weightTier: 'light',
-      variants: ['Obsidian Black', 'Pearl White'],
-      shortDesc: '36-hour total playtime, deep bass drivers, and ENC dual-mic clear voice calls.',
-      fullDesc: 'Designed for noisy commutes and workouts. Features IPX4 splash resistance, USB-C fast charging (10 mins = 90 mins play), and instant Bluetooth 5.3 pairing.',
-      specs: ['36-Hour Battery with Case', 'Environmental Noise Cancellation', 'Bluetooth 5.3 Low-Latency', 'IPX4 Sweat & Splash Resistant'],
-      image: createProductArt('#1e3a8a', '#38bdf8', 'Electronics', 'earbuds'),
-    },
-    {
-      id: 'el-02',
-      title: '20,000mAh 22.5W Fast-Charge Power Bank',
-      category: 'Electronics & Accessories',
-      sku: 'AM-EL-202',
-      price: 295.00,
-      compareAtPrice: 340.00,
-      stock: 3, // Low stock example
-      weightTier: 'medium',
-      variants: ['Black', 'Navy Blue'],
-      shortDesc: 'High-density lithium polymer battery with LED percentage display and dual USB-C/USB-A outputs.',
-      fullDesc: 'Reliable backup power for Dumsor or long intercity trips. Charges iPhones and Android flagships up to 50% in 30 minutes with built-in surge protection.',
-      specs: ['20,000mAh True Capacity', '22.5W PD + QC 3.0 Fast Charge', 'Digital LED Battery Indicator', '3 Output Ports (2x USB-A, 1x USB-C)'],
-      image: createProductArt('#0f172a', '#22c55e', 'Electronics', 'powerbank'),
-    },
-    {
-      id: 'el-03',
-      title: 'AM-Fit Pro AMOLED Smart Watch',
-      category: 'Electronics & Accessories',
-      sku: 'AM-EL-203',
-      price: 380.00,
-      compareAtPrice: 430.00,
-      stock: 9,
-      weightTier: 'light',
-      variants: ['Black Silicone', 'Silver Mesh'],
-      shortDesc: '1.85" HD display, Bluetooth calling, heart-rate/SpO2 tracking, and 10-day battery life.',
-      fullDesc: 'Answer calls directly from your wrist, receive WhatsApp alerts, and track over 100 workout modes with IP68 dust and water resistance.',
-      specs: ['1.85" Sunlight-Readable Display', 'Bluetooth Calls & WhatsApp Alerts', '24/7 Heart Rate & Sleep Monitor', '10-Day Typical Battery Life'],
-      image: createProductArt('#312e81', '#f59e0b', 'Electronics', 'watch'),
-    },
-    {
-      id: 'el-04',
-      title: '35W Dual USB-C GaN Fast Wall Charger + Cable',
-      category: 'Electronics & Accessories',
-      sku: 'AM-EL-204',
-      price: 135.00,
-      compareAtPrice: null,
-      stock: 22,
-      weightTier: 'light',
-      variants: ['UK 3-Pin White'],
-      shortDesc: 'Compact Ghana/UK 3-pin GaN adapter with braided 1.5m USB-C to USB-C fast cable.',
-      fullDesc: 'Runs cooler and charges faster than standard bricks. Safely powers two devices simultaneously with voltage fluctuation protection.',
-      specs: ['35W Max Power Delivery', 'UK/Ghana 3-Pin Plug', 'Includes 1.5m Braided USB-C Cable', 'Over-Voltage Surge Protection'],
-      image: createProductArt('#1d4ed8', '#fbbf24', 'Electronics', 'charger'),
-    },
-
-    // --- Fashion & Lifestyle (3) ---
-    {
-      id: 'fl-01',
-      title: 'Water-Resistant 15.6" Anti-Theft Laptop Backpack',
-      category: 'Fashion & Lifestyle',
-      sku: 'AM-FL-301',
-      price: 260.00,
-      compareAtPrice: 310.00,
-      stock: 8,
-      weightTier: 'medium',
-      variants: ['Charcoal Grey', 'Jet Black'],
-      shortDesc: 'Padded laptop sleeve, external USB charging port, and hidden back passport pocket.',
-      fullDesc: 'Built for students, professionals, and commuters in Kumasi and Accra. Repels sudden rain showers while keeping tech gear organized and cushioned.',
-      specs: ['Fits up to 15.6" Laptops', 'Water-Repellent Oxford Fabric', 'External USB Pass-Through Port', 'Breathable Padded Back Straps'],
-      image: createProductArt('#374151', '#f59e0b', 'Fashion & Lifestyle', 'backpack'),
-    },
-    {
-      id: 'fl-02',
-      title: 'Polarized UV400 Classic Wayfarer Sunglasses',
-      category: 'Fashion & Lifestyle',
-      sku: 'AM-FL-302',
-      price: 95.00,
-      compareAtPrice: 120.00,
-      stock: 14,
-      weightTier: 'light',
-      variants: ['Matte Black / Smoke', 'Tortoise / Amber'],
-      shortDesc: 'Anti-glare polarized lenses with lightweight acetate frame and hard protective case.',
-      fullDesc: 'Cuts harsh tropical road glare while driving or walking outdoors. Blocks 100% of UVA and UVB rays.',
-      specs: ['100% UV400 Polarized Protection', 'Scratch-Resistant TAC Lenses', 'Includes Hard Case & Microfiber Cloth'],
-      image: createProductArt('#78350f', '#fcd34d', 'Fashion & Lifestyle', 'sunglasses'),
-    },
-    {
-      id: 'fl-03',
-      title: 'Breathable Knit Everyday Walking Sneakers',
-      category: 'Fashion & Lifestyle',
-      sku: 'AM-FL-303',
-      price: 320.00,
-      compareAtPrice: null,
-      stock: 0, // Out of stock demo item
-      weightTier: 'medium',
-      variants: ['EU 41', 'EU 42', 'EU 43', 'EU 44'],
-      shortDesc: 'Featherweight mesh upper with shock-absorbing EVA outsole for all-day comfort.',
-      fullDesc: 'Versatile minimalist sneakers engineered for warm weather breathability and cushioned arch support.',
-      specs: ['Breathable Fly-Knit Upper', 'High-Rebound EVA Cushion Sole', 'Slip-Resistant Rubber Tread'],
-      image: createProductArt('#4b5563', '#10b981', 'Fashion & Lifestyle', 'sneakers'),
-    },
-
-    // --- Beauty & Personal Care (3) ---
-    {
-      id: 'bp-01',
-      title: 'Pure Northern Unrefined Whipped Shea Butter (350g)',
-      category: 'Beauty & Personal Care',
-      sku: 'AM-BP-401',
-      price: 75.00,
-      compareAtPrice: 90.00,
-      stock: 25,
-      weightTier: 'light',
-      variants: ['Unscented Pure', 'Lemongrass Infused', 'Coconut & Vanilla'],
-      shortDesc: '100% Grade-A Tamale shea butter whipped for smooth, non-greasy skin & hair hydration.',
-      fullDesc: 'Ethically sourced from women-led cooperatives in Northern Ghana and cold-whipped for effortless absorption without heavy residue.',
-      specs: ['350g Reusable Jar', '100% Organic Grade-A Shea', 'Zero Parabens or Mineral Oil', 'For Skin, Lips & Natural Hair'],
-      image: createProductArt('#92400e', '#fde68a', 'Beauty & Care', 'shea'),
-    },
-    {
-      id: 'bp-02',
-      title: 'Vitamin C + Niacinamide Daily Glow Serum (30ml)',
-      category: 'Beauty & Personal Care',
-      sku: 'AM-BP-402',
-      price: 130.00,
-      compareAtPrice: 155.00,
-      stock: 10,
-      weightTier: 'light',
-      variants: ['30ml Dropper Bottle'],
-      shortDesc: 'Brightens dark spots, evens skin tone, and boosts hydration without clogging pores.',
-      fullDesc: 'Formulated with 10% stabilized Vitamin C, 5% Niacinamide, and Hyaluronic Acid to fade hyperpigmentation and protect against daily UV stress.',
-      specs: ['10% Vitamin C + 5% Niacinamide', 'Fragrance-Free & Non-Comedogenic', 'Suitable for All Melanin-Rich Skin Tones'],
-      image: createProductArt('#b45309', '#fef08a', 'Beauty & Care', 'skincare'),
-    },
-    {
-      id: 'bp-03',
-      title: 'Cordless Rechargeable Beard & Hair Trimmer Kit',
-      category: 'Beauty & Personal Care',
-      sku: 'AM-BP-403',
-      price: 210.00,
-      compareAtPrice: 250.00,
-      stock: 7,
-      weightTier: 'light',
-      variants: ['Metallic Gold', 'Graphite Grey'],
-      shortDesc: 'Zero-gap T-blade precision trimmer with 4 guide combs and USB-C fast charging.',
-      fullDesc: 'Achieve crisp line-ups and smooth trims at home. Whisper-quiet rotary motor delivers 150 minutes of cordless runtime per charge.',
-      specs: ['Carbon-Steel Zero-Gap T-Blade', '150-Min Cordless Runtime', '4 Guide Combs (1.5mm–6mm)', 'USB-C Charging Cable Included'],
-      image: createProductArt('#4c1d95', '#f59e0b', 'Beauty & Care', 'grooming'),
-    },
+    { id:'hk-01', title:'Binatone Heavy-Duty 1.5L Smoothie & Spice Blender', category:'Home & Kitchen', sku:'AM-HK-101', price:460.00, compareAtPrice:520.00, stock:11, weightTier:'heavy', variants:['Silver / Black','Matte White'], shortDesc:'450W copper motor with unbreakable 1.5L jar and dry mill attachment for fufu flour, ginger & smoothies.', fullDesc:'Engineered for Ghanaian kitchens, this 450W heavy-duty blender crushes ice, blends tiger nuts, and grinds dry spices effortlessly using its dedicated stainless-steel dry mill.', specs:['450W Pure Copper Motor','1.5L Unbreakable Polycarbonate Jar','Includes Dry Spice & Pepper Mill','2 Speeds + Pulse Control','1-Year Local Warranty'], image:createProductArt('#0f766e','#f59e0b','Home & Kitchen','blender') },
+    { id:'hk-02', title:'2.0L Cordless Stainless Steel Electric Kettle', category:'Home & Kitchen', sku:'AM-HK-102', price:185.00, compareAtPrice:220.00, stock:4, weightTier:'medium', variants:['Brushed Steel','Matte Black'], shortDesc:'Rapid-boil 1800W concealed heating element with automatic boil-dry shutoff.', fullDesc:'Boil 2 litres of water in under 5 minutes. Built with food-grade 304 stainless steel interior, 360-degree swivel base, and cool-touch ergonomic handle.', specs:['2.0 Litre Capacity','1800W Fast-Boil Element','304 Food-Grade Stainless Steel','Auto Shut-Off Safety'], image:createProductArt('#115e59','#fbbf24','Home & Kitchen','kettle') },
+    { id:'hk-03', title:'Granite Non-Stick 5-Piece Cookware Set', category:'Home & Kitchen', sku:'AM-HK-103', price:680.00, compareAtPrice:760.00, stock:6, weightTier:'heavy', variants:['Charcoal Granite','Burgundy Red'], shortDesc:'PFOA-free die-cast aluminum pots and frypan with tempered glass lids for gas & electric stoves.', fullDesc:'Cook jollof, stews, and sauces with minimal oil and zero sticking. Thick induction-compatible base distributes heat evenly without hot spots.', specs:['24cm Casserole + Lid','20cm Saucepan + Lid','24cm Deep Frypan','PFOA & Lead-Free Coating'], image:createProductArt('#1e293b','#d97706','Home & Kitchen','cookware') },
+    { id:'hk-04', title:'750ml Double-Wall Vacuum Insulated Flask', category:'Home & Kitchen', sku:'AM-HK-104', price:110.00, compareAtPrice:null, stock:18, weightTier:'light', variants:['Teal','Midnight Black','Sand'], shortDesc:'Keeps water ice-cold for 24 hours or tea piping hot for 12 hours on the go.', fullDesc:'Leak-proof screw cap with carry loop, sweat-free powder-coated exterior, and wide mouth for easy ice-cube filling.', specs:['750ml Capacity','24h Cold / 12h Hot Retention','BPA-Free Leakproof Lid','Powder-Coated Grip'], image:createProductArt('#0d9488','#fef3c7','Home & Kitchen','flask') },
+    { id:'el-01', title:'Oraimo FreePods Neo True Wireless Earbuds', category:'Electronics & Accessories', sku:'AM-EL-201', price:245.00, compareAtPrice:290.00, stock:15, weightTier:'light', variants:['Obsidian Black','Pearl White'], shortDesc:'36-hour total playtime, deep bass drivers, and ENC dual-mic clear voice calls.', fullDesc:'Designed for noisy commutes and workouts. Features IPX4 splash resistance, USB-C fast charging (10 mins = 90 mins play), and instant Bluetooth 5.3 pairing.', specs:['36-Hour Battery with Case','Environmental Noise Cancellation','Bluetooth 5.3 Low-Latency','IPX4 Sweat & Splash Resistant'], image:createProductArt('#1e3a8a','#38bdf8','Electronics','earbuds') },
+    { id:'el-02', title:'20,000mAh 22.5W Fast-Charge Power Bank', category:'Electronics & Accessories', sku:'AM-EL-202', price:295.00, compareAtPrice:340.00, stock:3, weightTier:'medium', variants:['Black','Navy Blue'], shortDesc:'High-density lithium polymer battery with LED percentage display and dual USB-C/USB-A outputs.', fullDesc:'Reliable backup power for Dumsor or long intercity trips. Charges iPhones and Android flagships up to 50% in 30 minutes with built-in surge protection.', specs:['20,000mAh True Capacity','22.5W PD + QC 3.0 Fast Charge','Digital LED Battery Indicator','3 Output Ports (2x USB-A, 1x USB-C)'], image:createProductArt('#0f172a','#22c55e','Electronics','powerbank') },
+    { id:'el-03', title:'AM-Fit Pro AMOLED Smart Watch', category:'Electronics & Accessories', sku:'AM-EL-203', price:380.00, compareAtPrice:430.00, stock:9, weightTier:'light', variants:['Black Silicone','Silver Mesh'], shortDesc:'1.85" HD display, Bluetooth calling, heart-rate/SpO2 tracking, and 10-day battery life.', fullDesc:'Answer calls directly from your wrist, receive WhatsApp alerts, and track over 100 workout modes with IP68 dust and water resistance.', specs:['1.85" Sunlight-Readable Display','Bluetooth Calls & WhatsApp Alerts','24/7 Heart Rate & Sleep Monitor','10-Day Typical Battery Life'], image:createProductArt('#312e81','#f59e0b','Electronics','watch') },
+    { id:'el-04', title:'35W Dual USB-C GaN Fast Wall Charger + Cable', category:'Electronics & Accessories', sku:'AM-EL-204', price:135.00, compareAtPrice:null, stock:22, weightTier:'light', variants:['UK 3-Pin White'], shortDesc:'Compact Ghana/UK 3-pin GaN adapter with braided 1.5m USB-C to USB-C fast cable.', fullDesc:'Runs cooler and charges faster than standard bricks. Safely powers two devices simultaneously with voltage fluctuation protection.', specs:['35W Max Power Delivery','UK/Ghana 3-Pin Plug','Includes 1.5m Braided USB-C Cable','Over-Voltage Surge Protection'], image:createProductArt('#1d4ed8','#fbbf24','Electronics','charger') },
+    { id:'fl-01', title:'Water-Resistant 15.6" Anti-Theft Laptop Backpack', category:'Fashion & Lifestyle', sku:'AM-FL-301', price:260.00, compareAtPrice:310.00, stock:8, weightTier:'medium', variants:['Charcoal Grey','Jet Black'], shortDesc:'Padded laptop sleeve, external USB charging port, and hidden back passport pocket.', fullDesc:'Built for students, professionals, and commuters in Kumasi and Accra. Repels sudden rain showers while keeping tech gear organized and cushioned.', specs:['Fits up to 15.6" Laptops','Water-Repellent Oxford Fabric','External USB Pass-Through Port','Breathable Padded Back Straps'], image:createProductArt('#374151','#f59e0b','Fashion & Lifestyle','backpack') },
+    { id:'fl-02', title:'Polarized UV400 Classic Wayfarer Sunglasses', category:'Fashion & Lifestyle', sku:'AM-FL-302', price:95.00, compareAtPrice:120.00, stock:14, weightTier:'light', variants:['Matte Black / Smoke','Tortoise / Amber'], shortDesc:'Anti-glare polarized lenses with lightweight acetate frame and hard protective case.', fullDesc:'Cuts harsh tropical road glare while driving or walking outdoors. Blocks 100% of UVA and UVB rays.', specs:['100% UV400 Polarized Protection','Scratch-Resistant TAC Lenses','Includes Hard Case & Microfiber Cloth'], image:createProductArt('#78350f','#fcd34d','Fashion & Lifestyle','sunglasses') },
+    { id:'fl-03', title:'Breathable Knit Everyday Walking Sneakers', category:'Fashion & Lifestyle', sku:'AM-FL-303', price:320.00, compareAtPrice:null, stock:0, weightTier:'medium', variants:['EU 41','EU 42','EU 43','EU 44'], shortDesc:'Featherweight mesh upper with shock-absorbing EVA outsole for all-day comfort.', fullDesc:'Versatile minimalist sneakers engineered for warm weather breathability and cushioned arch support.', specs:['Breathable Fly-Knit Upper','High-Rebound EVA Cushion Sole','Slip-Resistant Rubber Tread'], image:createProductArt('#4b5563','#10b981','Fashion & Lifestyle','sneakers') },
+    { id:'bp-01', title:'Pure Northern Unrefined Whipped Shea Butter (350g)', category:'Beauty & Personal Care', sku:'AM-BP-401', price:75.00, compareAtPrice:90.00, stock:25, weightTier:'light', variants:['Unscented Pure','Lemongrass Infused','Coconut & Vanilla'], shortDesc:'100% Grade-A Tamale shea butter whipped for smooth, non-greasy skin & hair hydration.', fullDesc:'Ethically sourced from women-led cooperatives in Northern Ghana and cold-whipped for effortless absorption without heavy residue.', specs:['350g Reusable Jar','100% Organic Grade-A Shea','Zero Parabens or Mineral Oil','For Skin, Lips & Natural Hair'], image:createProductArt('#92400e','#fde68a','Beauty & Care','shea') },
+    { id:'bp-02', title:'Vitamin C + Niacinamide Daily Glow Serum (30ml)', category:'Beauty & Personal Care', sku:'AM-BP-402', price:130.00, compareAtPrice:155.00, stock:10, weightTier:'light', variants:['30ml Dropper Bottle'], shortDesc:'Brightens dark spots, evens skin tone, and boosts hydration without clogging pores.', fullDesc:'Formulated with 10% stabilized Vitamin C, 5% Niacinamide, and Hyaluronic Acid to fade hyperpigmentation and protect against daily UV stress.', specs:['10% Vitamin C + 5% Niacinamide','Fragrance-Free & Non-Comedogenic','Suitable for All Melanin-Rich Skin Tones'], image:createProductArt('#b45309','#fef08a','Beauty & Care','skincare') },
+    { id:'bp-03', title:'Cordless Rechargeable Beard & Hair Trimmer Kit', category:'Beauty & Personal Care', sku:'AM-BP-403', price:210.00, compareAtPrice:250.00, stock:7, weightTier:'light', variants:['Metallic Gold','Graphite Grey'], shortDesc:'Zero-gap T-blade precision trimmer with 4 guide combs and USB-C fast charging.', fullDesc:'Achieve crisp line-ups and smooth trims at home. Whisper-quiet rotary motor delivers 150 minutes of cordless runtime per charge.', specs:['Carbon-Steel Zero-Gap T-Blade','150-Min Cordless Runtime','4 Guide Combs (1.5mm–6mm)','USB-C Charging Cable Included'], image:createProductArt('#4c1d95','#f59e0b','Beauty & Care','grooming') },
   ];
 
   /* ==========================================================================
      4. DELIVERY RULES ENGINE
      ========================================================================== */
   const DELIVERY_ZONES = {
-    pickup: {
-      id: 'pickup',
-      label: 'Store Pickup (Ejisu Hub / Adum Point)',
-      baseFee: 0,
-      heavySurcharge: 0,
-      regionalPerItem: 0,
-      description: 'Free pickup within 2 hours of order confirmation.',
-    },
-    local: {
-      id: 'local',
-      label: 'Same-City Rider (Ejisu & Greater Kumasi)',
-      baseFee: 25,
-      heavySurcharge: 15, // Added once if any 'heavy' item is in cart
-      regionalPerItem: 0,
-      description: 'GHS 25 flat rider fee (+GHS 15 handling if heavy appliance/cookware is included).',
-    },
-    regional: {
-      id: 'regional',
-      label: 'Regional / Intercity Dispatch (Accra, Takoradi, Tamale & Nationwide)',
-      baseFee: 55,
-      heavySurcharge: 25,
-      regionalPerItem: 8, // Per extra item beyond the 1st item
-      description: 'GHS 55 base parcel rate + GHS 8 per extra item (+GHS 25 for heavy cargo).',
-    },
+    pickup:   { id:'pickup',   label:'Store Pickup (Ejisu Hub / Adum Point)',                              baseFee:0,  heavySurcharge:0,  regionalPerItem:0, description:'Free pickup within 2 hours of order confirmation.' },
+    local:    { id:'local',    label:'Same-City Rider (Ejisu & Greater Kumasi)',                            baseFee:25, heavySurcharge:15, regionalPerItem:0, description:'GHS 25 flat rider fee (+GHS 15 handling if heavy appliance/cookware is included).' },
+    regional: { id:'regional', label:'Regional / Intercity Dispatch (Accra, Takoradi, Tamale & Nationwide)', baseFee:55, heavySurcharge:25, regionalPerItem:8, description:'GHS 55 base parcel rate + GHS 8 per extra item (+GHS 25 for heavy cargo).' },
   };
 
   function calculateDelivery(cartItems, productsMap, zoneId) {
     const zone = DELIVERY_ZONES[zoneId] || DELIVERY_ZONES.pickup;
     if (!cartItems.length || zone.id === 'pickup') {
-      return {
-        fee: 0,
-        note: zone.description,
-        hasHeavy: false,
-      };
+      return { fee: 0, note: zone.description, hasHeavy: false };
     }
-
-    let totalUnits = 0;
-    let hasHeavy = false;
-
+    let totalUnits = 0, hasHeavy = false;
     cartItems.forEach((item) => {
       totalUnits += item.qty;
       const prod = productsMap.get(item.productId);
-      if (prod && prod.weightTier === 'heavy') {
-        hasHeavy = true;
-      }
+      if (prod && prod.weightTier === 'heavy') hasHeavy = true;
     });
-
     let fee = zone.baseFee;
     const notes = [`Base: ${formatMoney(zone.baseFee)}`];
-
     if (zone.id === 'regional' && totalUnits > 1) {
       const extraFee = (totalUnits - 1) * zone.regionalPerItem;
       fee += extraFee;
       notes.push(`+${formatMoney(extraFee)} (${totalUnits - 1} extra item${totalUnits - 1 > 1 ? 's' : ''})`);
     }
-
     if (hasHeavy && zone.heavySurcharge > 0) {
       fee += zone.heavySurcharge;
       notes.push(`+${formatMoney(zone.heavySurcharge)} heavy item handling`);
     }
-
-    return {
-      fee,
-      note: notes.join(' • '),
-      hasHeavy,
-    };
+    return { fee, note: notes.join(' • '), hasHeavy };
   }
 
   /* ==========================================================================
-     5. APPLICATION STATE & PERSISTENCE
+     5. STATE & PERSISTENCE
      ========================================================================== */
   const state = {
     products: [],
-    cart: [], // Array of { productId, variant, qty }
+    cart: [],
     deliveryZone: 'local',
-    filters: {
-      category: 'All',
-      search: '',
-      sort: 'featured',
-    },
+    filters: { category: 'All', search: '', sort: 'featured' },
     lastOrder: null,
   };
 
   function loadPersistedState() {
-    // 1. Load stock overrides from localStorage so purchased deductions persist
     let savedStock = {};
-    try {
-      savedStock = JSON.parse(localStorage.getItem(STORAGE_KEYS.STOCK)) || {};
-    } catch {
-      savedStock = {};
-    }
-
+    try { savedStock = JSON.parse(localStorage.getItem(STORAGE_KEYS.STOCK)) || {}; } catch { savedStock = {}; }
     state.products = INITIAL_PRODUCTS.map((p) => ({
       ...p,
       stock: typeof savedStock[p.id] === 'number' ? savedStock[p.id] : p.stock,
     }));
 
-    // 2. Load saved delivery zone
     const savedZone = localStorage.getItem(STORAGE_KEYS.ZONE);
-    if (savedZone && DELIVERY_ZONES[savedZone]) {
-      state.deliveryZone = savedZone;
-    }
+    if (savedZone && DELIVERY_ZONES[savedZone]) state.deliveryZone = savedZone;
 
-    // 3. Load saved cart & sanitize against current stock
     try {
       const rawCart = JSON.parse(localStorage.getItem(STORAGE_KEYS.CART)) || [];
       const prodMap = getProductsMap();
@@ -400,64 +145,40 @@
         .filter((item) => prodMap.has(item.productId) && item.qty > 0)
         .map((item) => {
           const maxStock = prodMap.get(item.productId).stock;
-          return {
-            productId: item.productId,
-            variant: item.variant,
-            qty: Math.min(item.qty, maxStock),
-          };
+          return { productId: item.productId, variant: item.variant, qty: Math.min(item.qty, maxStock) };
         })
         .filter((item) => item.qty > 0);
-    } catch {
-      state.cart = [];
-    }
+    } catch { state.cart = []; }
   }
 
-  function saveCart() {
-    localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(state.cart));
-  }
-
-  function saveZone() {
-    localStorage.setItem(STORAGE_KEYS.ZONE, state.deliveryZone);
-  }
-
+  function saveCart() { localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(state.cart)); }
+  function saveZone() { localStorage.setItem(STORAGE_KEYS.ZONE, state.deliveryZone); }
   function saveStock() {
     const stockMap = {};
-    state.products.forEach((p) => {
-      stockMap[p.id] = p.stock;
-    });
+    state.products.forEach((p) => { stockMap[p.id] = p.stock; });
     localStorage.setItem(STORAGE_KEYS.STOCK, JSON.stringify(stockMap));
   }
-
-  function getProductsMap() {
-    return new Map(state.products.map((p) => [p.id, p]));
-  }
+  function getProductsMap() { return new Map(state.products.map((p) => [p.id, p])); }
 
   /* ==========================================================================
      6. FORMATTING & UI HELPERS
      ========================================================================== */
-  function formatMoney(amount) {
-    return `${STORE_CONFIG.currency} ${Number(amount || 0).toFixed(2)}`;
-  }
+  function formatMoney(amount) { return `${STORE_CONFIG.currency} ${Number(amount || 0).toFixed(2)}`; }
 
   function getStockBadge(stock) {
-    if (stock <= 0) {
-      return { text: 'Out of Stock', className: 'stock-pill stock-out' };
-    }
-    if (stock <= 5) {
-      return { text: `Low Stock – ${stock} left`, className: 'stock-pill stock-low' };
-    }
+    if (stock <= 0) return { text: 'Out of Stock', className: 'stock-pill stock-out' };
+    if (stock <= 5) return { text: `Low Stock – ${stock} left`, className: 'stock-pill stock-low' };
     return { text: 'In Stock', className: 'stock-pill stock-in' };
   }
 
   let toastTimer = null;
   function showToast(message) {
     const toastEl = document.getElementById('toast');
+    if (!toastEl) return;
     toastEl.textContent = message;
     toastEl.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      toastEl.classList.remove('show');
-    }, 2600);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2600);
   }
 
   function escapeHTML(str) {
@@ -468,40 +189,42 @@
       .replace(/"/g, '&quot;');
   }
 
+  /* Modal open/close helpers + body scroll lock */
+  function syncBodyScrollLock() {
+    const anyModalOpen = document.querySelector('.modal:not(.hidden)');
+    const cartOpen = document.querySelector('.cart-drawer:not([hidden])');
+    document.body.style.overflow = (anyModalOpen || cartOpen) ? 'hidden' : '';
+  }
+  function openModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    syncBodyScrollLock();
+  }
+  function closeModal(id) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+    modal.classList.add('hidden');
+    syncBodyScrollLock();
+  }
+
   /* ==========================================================================
-     7. CATALOG FILTERING, SORTING & RENDERING
+     7. CATALOG RENDERING
      ========================================================================== */
   function getFilteredProducts() {
     const { category, search, sort } = state.filters;
     const query = search.trim().toLowerCase();
-
     const filtered = state.products.filter((prod) => {
       const matchesCat = category === 'All' || prod.category === category;
       if (!matchesCat) return false;
       if (!query) return true;
-
-      const haystack = [
-        prod.title,
-        prod.category,
-        prod.sku,
-        prod.shortDesc,
-        prod.fullDesc,
-        ...(prod.specs || []),
-      ]
-        .join(' ')
-        .toLowerCase();
-
+      const haystack = [prod.title, prod.category, prod.sku, prod.shortDesc, prod.fullDesc, ...(prod.specs || [])]
+        .join(' ').toLowerCase();
       return haystack.includes(query);
     });
-
-    if (sort === 'price-asc') {
-      filtered.sort((a, b) => a.price - b.price);
-    } else if (sort === 'price-desc') {
-      filtered.sort((a, b) => b.price - a.price);
-    } else if (sort === 'name-asc') {
-      filtered.sort((a, b) => a.title.localeCompare(b.title));
-    }
-
+    if (sort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+    else if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+    else if (sort === 'name-asc') filtered.sort((a, b) => a.title.localeCompare(b.title));
     return filtered;
   }
 
@@ -509,48 +232,45 @@
     const grid = document.getElementById('productGrid');
     const counter = document.getElementById('resultsCounter');
     const emptyState = document.getElementById('emptyCatalogState');
+    if (!grid) return;
 
     const items = getFilteredProducts();
-    counter.textContent = `Showing ${items.length} product${items.length === 1 ? '' : 's'}`;
+    if (counter) counter.textContent = `Showing ${items.length} product${items.length === 1 ? '' : 's'}`;
 
     if (!items.length) {
       grid.innerHTML = '';
-      emptyState.classList.remove('hidden');
+      emptyState?.classList.remove('hidden');
       return;
     }
+    emptyState?.classList.add('hidden');
 
-    emptyState.classList.add('hidden');
-    grid.innerHTML = items
-      .map((prod) => {
-        const badge = getStockBadge(prod.stock);
-        const isOut = prod.stock <= 0;
-
-        return `
-          <article class="product-card" data-product-id="${prod.id}">
-            <div class="card-media" data-action="view-detail" data-id="${prod.id}">
-              <img src="${prod.image}" alt="${escapeHTML(prod.title)}" loading="lazy" />
-              <span class="${badge.className}">${badge.text}</span>
-              <span class="weight-pill">${prod.weightTier} tier</span>
+    grid.innerHTML = items.map((prod) => {
+      const badge = getStockBadge(prod.stock);
+      const isOut = prod.stock <= 0;
+      return `
+        <article class="product-card" data-product-id="${prod.id}">
+          <div class="card-media" data-action="view-detail" data-id="${prod.id}">
+            <img src="${prod.image}" alt="${escapeHTML(prod.title)}" loading="lazy" />
+            <span class="${badge.className}">${badge.text}</span>
+            <span class="weight-pill">${prod.weightTier} tier</span>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">${escapeHTML(prod.category)}</div>
+            <h3 class="card-title" data-action="view-detail" data-id="${prod.id}">${escapeHTML(prod.title)}</h3>
+            <p class="card-desc">${escapeHTML(prod.shortDesc)}</p>
+            <div class="card-price-row">
+              <span class="price-current">${formatMoney(prod.price)}</span>
+              ${prod.compareAtPrice ? `<span class="price-compare">${formatMoney(prod.compareAtPrice)}</span>` : ''}
             </div>
-            <div class="card-body">
-              <div class="card-cat">${escapeHTML(prod.category)}</div>
-              <h3 class="card-title" data-action="view-detail" data-id="${prod.id}">${escapeHTML(prod.title)}</h3>
-              <p class="card-desc">${escapeHTML(prod.shortDesc)}</p>
-              <div class="card-price-row">
-                <span class="price-current">${formatMoney(prod.price)}</span>
-                ${prod.compareAtPrice ? `<span class="price-compare">${formatMoney(prod.compareAtPrice)}</span>` : ''}
-              </div>
-              <div class="card-actions">
-                <button type="button" class="btn btn-outline" data-action="view-detail" data-id="${prod.id}">Details</button>
-                <button type="button" class="btn btn-primary" data-action="quick-add" data-id="${prod.id}" ${isOut ? 'disabled' : ''}>
-                  ${isOut ? 'Sold Out' : '+ Add to Cart'}
-                </button>
-              </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-outline" data-action="view-detail" data-id="${prod.id}">Details</button>
+              <button type="button" class="btn btn-primary" data-action="quick-add" data-id="${prod.id}" ${isOut ? 'disabled' : ''}>
+                ${isOut ? 'Sold Out' : '+ Add to Cart'}
+              </button>
             </div>
-          </article>
-        `;
-      })
-      .join('');
+          </div>
+        </article>`;
+    }).join('');
   }
 
   /* ==========================================================================
@@ -559,8 +279,6 @@
   function openProductDetail(productId) {
     const prod = getProductsMap().get(productId);
     if (!prod) return;
-
-    const modal = document.getElementById('productModal');
     const body = document.getElementById('productModalBody');
     const badge = getStockBadge(prod.stock);
     const isOut = prod.stock <= 0;
@@ -578,32 +296,19 @@
           <span class="${badge.className}" style="position:static;">${badge.text}</span>
           <span class="muted-text">Shipping Weight: <strong>${prod.weightTier.toUpperCase()}</strong></span>
         </div>
-
         <div class="card-price-row">
           <span class="price-current" style="font-size:1.45rem;">${formatMoney(prod.price)}</span>
           ${prod.compareAtPrice ? `<span class="price-compare">${formatMoney(prod.compareAtPrice)}</span>` : ''}
         </div>
-
         <p>${escapeHTML(prod.fullDesc)}</p>
-
         <h4 style="margin:1rem 0 0.35rem;font-size:0.92rem;">Key Specifications:</h4>
-        <ul class="detail-specs">
-          ${prod.specs.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}
-        </ul>
-
+        <ul class="detail-specs">${prod.specs.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}</ul>
         <div class="form-group">
           <label>Select Option / Variant:</label>
           <div class="variant-pills" id="detailVariants">
-            ${prod.variants
-              .map(
-                (v, i) => `
-              <button type="button" class="variant-btn ${i === 0 ? 'active' : ''}" data-variant="${escapeHTML(v)}">${escapeHTML(v)}</button>
-            `
-              )
-              .join('')}
+            ${prod.variants.map((v, i) => `<button type="button" class="variant-btn ${i === 0 ? 'active' : ''}" data-variant="${escapeHTML(v)}">${escapeHTML(v)}</button>`).join('')}
           </div>
         </div>
-
         <div class="detail-buy-row">
           <div class="qty-stepper" aria-label="Quantity selector">
             <button type="button" id="detailQtyDec" ${isOut ? 'disabled' : ''}>−</button>
@@ -614,10 +319,8 @@
             ${isOut ? 'Out of Stock' : 'Add to Cart'}
           </button>
         </div>
-      </div>
-    `;
+      </div>`;
 
-    // Variant switching
     body.querySelectorAll('.variant-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         body.querySelectorAll('.variant-btn').forEach((b) => b.classList.remove('active'));
@@ -626,27 +329,16 @@
       });
     });
 
-    // Quantity capping against available stock
     const qtyValEl = document.getElementById('detailQtyVal');
     document.getElementById('detailQtyDec')?.addEventListener('click', () => {
-      if (selectedQty > 1) {
-        selectedQty -= 1;
-        qtyValEl.textContent = selectedQty;
-      }
+      if (selectedQty > 1) { selectedQty -= 1; qtyValEl.textContent = selectedQty; }
     });
-
     document.getElementById('detailQtyInc')?.addEventListener('click', () => {
-      if (selectedQty < prod.stock) {
-        selectedQty += 1;
-        qtyValEl.textContent = selectedQty;
-      } else {
-        showToast(`Only ${prod.stock} unit(s) available in stock`);
-      }
+      if (selectedQty < prod.stock) { selectedQty += 1; qtyValEl.textContent = selectedQty; }
+      else showToast(`Only ${prod.stock} unit(s) available in stock`);
     });
-
     document.getElementById('detailAddBtn')?.addEventListener('click', () => {
-      const added = addToCart(prod.id, selectedVariant, selectedQty);
-      if (added) {
+      if (addToCart(prod.id, selectedVariant, selectedQty)) {
         closeModal('productModal');
         openCartDrawer();
       }
@@ -656,11 +348,9 @@
   }
 
   /* ==========================================================================
-     9. CART STATE MANAGEMENT & DRAWER UI
+     9. CART
      ========================================================================== */
-  function getCartTotalUnits() {
-    return state.cart.reduce((sum, item) => sum + item.qty, 0);
-  }
+  function getCartTotalUnits() { return state.cart.reduce((s, i) => s + i.qty, 0); }
 
   function getCartSubtotal() {
     const prodMap = getProductsMap();
@@ -672,36 +362,16 @@
 
   function addToCart(productId, variant, qtyToAdd = 1) {
     const prod = getProductsMap().get(productId);
-    if (!prod || prod.stock <= 0) {
-      showToast('Sorry, this item is currently out of stock.');
-      return false;
-    }
-
+    if (!prod || prod.stock <= 0) { showToast('Sorry, this item is currently out of stock.'); return false; }
     const chosenVariant = variant || prod.variants[0] || 'Standard';
-
-    // Check total units of this product across all variants in cart against stock
-    const existingTotalForProd = state.cart
-      .filter((i) => i.productId === productId)
-      .reduce((sum, i) => sum + i.qty, 0);
-
+    const existingTotalForProd = state.cart.filter((i) => i.productId === productId).reduce((s, i) => s + i.qty, 0);
     if (existingTotalForProd + qtyToAdd > prod.stock) {
       showToast(`Stock limit reached: only ${prod.stock} unit(s) available.`);
       return false;
     }
-
-    const existingLine = state.cart.find(
-      (i) => i.productId === productId && i.variant === chosenVariant
-    );
-
-    if (existingLine) {
-      existingLine.qty += qtyToAdd;
-    } else {
-      state.cart.push({
-        productId,
-        variant: chosenVariant,
-        qty: qtyToAdd,
-      });
-    }
+    const existingLine = state.cart.find((i) => i.productId === productId && i.variant === chosenVariant);
+    if (existingLine) existingLine.qty += qtyToAdd;
+    else state.cart.push({ productId, variant: chosenVariant, qty: qtyToAdd });
 
     saveCart();
     renderCart();
@@ -712,36 +382,21 @@
   function updateCartItemQty(index, delta) {
     const item = state.cart[index];
     if (!item) return;
-
     const prod = getProductsMap().get(item.productId);
     if (!prod) return;
-
     if (delta > 0) {
-      const totalForProd = state.cart
-        .filter((i) => i.productId === item.productId)
-        .reduce((sum, i) => sum + i.qty, 0);
-
-      if (totalForProd + delta > prod.stock) {
-        showToast(`Maximum available stock (${prod.stock}) reached.`);
-        return;
-      }
+      const totalForProd = state.cart.filter((i) => i.productId === item.productId).reduce((s, i) => s + i.qty, 0);
+      if (totalForProd + delta > prod.stock) { showToast(`Maximum available stock (${prod.stock}) reached.`); return; }
       item.qty += delta;
     } else {
       item.qty += delta;
-      if (item.qty <= 0) {
-        state.cart.splice(index, 1);
-      }
+      if (item.qty <= 0) state.cart.splice(index, 1);
     }
-
     saveCart();
     renderCart();
   }
 
-  function removeCartItem(index) {
-    state.cart.splice(index, 1);
-    saveCart();
-    renderCart();
-  }
+  function removeCartItem(index) { state.cart.splice(index, 1); saveCart(); renderCart(); }
 
   function renderCart() {
     const totalUnits = getCartTotalUnits();
@@ -751,7 +406,7 @@
     const container = document.getElementById('cartItemsContainer');
     const footer = document.getElementById('cartFooter');
     const zoneSelect = document.getElementById('deliveryZoneSelect');
-    zoneSelect.value = state.deliveryZone;
+    if (zoneSelect) zoneSelect.value = state.deliveryZone;
 
     if (!state.cart.length) {
       container.innerHTML = `
@@ -759,8 +414,7 @@
           <h3>Your cart is empty</h3>
           <p class="muted-text">Add everyday essentials, gadgets, or home picks to get started.</p>
           <button type="button" id="emptyCartBrowseBtn" class="btn btn-primary">Browse Products</button>
-        </div>
-      `;
+        </div>`;
       document.getElementById('emptyCartBrowseBtn')?.addEventListener('click', closeCartDrawer);
       footer.classList.add('hidden');
       return;
@@ -769,77 +423,59 @@
     footer.classList.remove('hidden');
     const prodMap = getProductsMap();
 
-    container.innerHTML = state.cart
-      .map((item, idx) => {
-        const prod = prodMap.get(item.productId);
-        if (!prod) return '';
-        const lineTotal = prod.price * item.qty;
-
-        return `
-          <div class="cart-item">
-            <div class="cart-item-thumb">
-              <img src="${prod.image}" alt="${escapeHTML(prod.title)}" />
-            </div>
-            <div>
-              <h4 class="cart-item-title">${escapeHTML(prod.title)}</h4>
-              <div class="cart-item-meta">Option: ${escapeHTML(item.variant)} • ${formatMoney(prod.price)} each</div>
-              <div class="cart-item-controls">
-                <div class="qty-stepper">
-                  <button type="button" data-cart-dec="${idx}" aria-label="Decrease quantity">−</button>
-                  <span>${item.qty}</span>
-                  <button type="button" data-cart-inc="${idx}" aria-label="Increase quantity">+</button>
-                </div>
-                <strong>${formatMoney(lineTotal)}</strong>
-                <button type="button" class="remove-item-btn" data-cart-del="${idx}">Remove</button>
+    container.innerHTML = state.cart.map((item, idx) => {
+      const prod = prodMap.get(item.productId);
+      if (!prod) return '';
+      const lineTotal = prod.price * item.qty;
+      return `
+        <div class="cart-item">
+          <div class="cart-item-thumb"><img src="${prod.image}" alt="${escapeHTML(prod.title)}" /></div>
+          <div>
+            <h4 class="cart-item-title">${escapeHTML(prod.title)}</h4>
+            <div class="cart-item-meta">Option: ${escapeHTML(item.variant)} • ${formatMoney(prod.price)} each</div>
+            <div class="cart-item-controls">
+              <div class="qty-stepper">
+                <button type="button" data-cart-dec="${idx}" aria-label="Decrease quantity">−</button>
+                <span>${item.qty}</span>
+                <button type="button" data-cart-inc="${idx}" aria-label="Increase quantity">+</button>
               </div>
+              <strong>${formatMoney(lineTotal)}</strong>
+              <button type="button" class="remove-item-btn" data-cart-del="${idx}">Remove</button>
             </div>
           </div>
-        `;
-      })
-      .join('');
+        </div>`;
+    }).join('');
 
     const subtotal = getCartSubtotal();
     const delivery = calculateDelivery(state.cart, prodMap, state.deliveryZone);
-    const grandTotal = subtotal + delivery.fee;
-
     document.getElementById('deliveryRuleHint').textContent = delivery.note;
     document.getElementById('cartSubtotal').textContent = formatMoney(subtotal);
-    document.getElementById('cartDeliveryFee').textContent =
-      delivery.fee === 0 ? 'FREE (GHS 0.00)' : formatMoney(delivery.fee);
-    document.getElementById('cartGrandTotal').textContent = formatMoney(grandTotal);
+    document.getElementById('cartDeliveryFee').textContent = delivery.fee === 0 ? 'FREE (GHS 0.00)' : formatMoney(delivery.fee);
+    document.getElementById('cartGrandTotal').textContent = formatMoney(subtotal + delivery.fee);
   }
 
   function openCartDrawer() {
-    const drawer = document.getElementById('cartDrawer');
-    const backdrop = document.getElementById('drawerBackdrop');
-    drawer.hidden = false;
-    backdrop.classList.remove('hidden');
+    document.getElementById('cartDrawer').hidden = false;
+    document.getElementById('drawerBackdrop').classList.remove('hidden');
     document.getElementById('openCartBtn').setAttribute('aria-expanded', 'true');
+    syncBodyScrollLock();
   }
-
   function closeCartDrawer() {
-    const drawer = document.getElementById('cartDrawer');
-    const backdrop = document.getElementById('drawerBackdrop');
-    drawer.hidden = true;
-    backdrop.classList.add('hidden');
+    document.getElementById('cartDrawer').hidden = true;
+    document.getElementById('drawerBackdrop').classList.add('hidden');
     document.getElementById('openCartBtn').setAttribute('aria-expanded', 'false');
+    syncBodyScrollLock();
   }
 
   /* ==========================================================================
-     10. CHECKOUT FLOW, VALIDATION & ORDER RECEIPT
+     10. CHECKOUT
      ========================================================================== */
   function openCheckoutModal() {
-    if (!state.cart.length) {
-      showToast('Your cart is empty.');
-      return;
-    }
-
+    if (!state.cart.length) { showToast('Your cart is empty.'); return; }
     closeCartDrawer();
     document.getElementById('checkoutFormView').classList.remove('hidden');
     document.getElementById('orderConfirmationView').classList.add('hidden');
-
-    const zoneSelect = document.getElementById('checkoutZoneSelect');
-    zoneSelect.value = state.deliveryZone;
+    document.getElementById('checkoutZoneSelect').value = state.deliveryZone;
     syncCheckoutSummary();
     openModal('checkoutModal');
   }
@@ -847,27 +483,20 @@
   function syncCheckoutSummary() {
     const prodMap = getProductsMap();
     const summaryContainer = document.getElementById('checkoutItemsSummary');
-
-    summaryContainer.innerHTML = state.cart
-      .map((item) => {
-        const prod = prodMap.get(item.productId);
-        return `
-          <div class="summary-line">
-            <span>${item.qty}&times; ${escapeHTML(prod.title)} <small class="muted-text">(${escapeHTML(item.variant)})</small></span>
-            <strong>${formatMoney(prod.price * item.qty)}</strong>
-          </div>
-        `;
-      })
-      .join('');
+    summaryContainer.innerHTML = state.cart.map((item) => {
+      const prod = prodMap.get(item.productId);
+      return `
+        <div class="summary-line">
+          <span>${item.qty}&times; ${escapeHTML(prod.title)} <small class="muted-text">(${escapeHTML(item.variant)})</small></span>
+          <strong>${formatMoney(prod.price * item.qty)}</strong>
+        </div>`;
+    }).join('');
 
     const subtotal = getCartSubtotal();
     const delivery = calculateDelivery(state.cart, prodMap, state.deliveryZone);
-    const total = subtotal + delivery.fee;
-
     document.getElementById('checkoutSubtotal').textContent = formatMoney(subtotal);
-    document.getElementById('checkoutDelivery').textContent =
-      delivery.fee === 0 ? 'FREE' : formatMoney(delivery.fee);
-    document.getElementById('checkoutTotal').textContent = formatMoney(total);
+    document.getElementById('checkoutDelivery').textContent = delivery.fee === 0 ? 'FREE' : formatMoney(delivery.fee);
+    document.getElementById('checkoutTotal').textContent = formatMoney(subtotal + delivery.fee);
   }
 
   function generateOrderReference() {
@@ -878,48 +507,33 @@
 
   function handleCheckoutSubmit(event) {
     event.preventDefault();
-
-    // Clear previous errors
     ['custName', 'custPhone', 'custEmail', 'custAddress'].forEach((id) => {
-      document.getElementById(`err-${id}`).textContent = '';
+      const el = document.getElementById(`err-${id}`);
+      if (el) el.textContent = '';
     });
 
     const fullName = document.getElementById('custName').value.trim();
     const phone = document.getElementById('custPhone').value.trim();
     const email = document.getElementById('custEmail').value.trim();
-    const address = document.getElementById('custAddress').value.trim();
+    let address = document.getElementById('custAddress').value.trim();
     const notes = document.getElementById('custNotes').value.trim();
     const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'Mobile Money';
-
     let isValid = true;
 
-    if (fullName.length < 2) {
-      document.getElementById('err-custName').textContent = 'Please enter your full name.';
-      isValid = false;
-    }
-
+    if (fullName.length < 2) { document.getElementById('err-custName').textContent = 'Please enter your full name.'; isValid = false; }
     const cleanDigits = phone.replace(/[\s\-()+]/g, '');
-    if (cleanDigits.length < 9) {
-      document.getElementById('err-custPhone').textContent = 'Enter a valid Ghana or international phone/WhatsApp number.';
-      isValid = false;
-    }
-
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      document.getElementById('err-custEmail').textContent = 'Please enter a valid email address or leave blank.';
-      isValid = false;
-    }
+    if (cleanDigits.length < 9) { document.getElementById('err-custPhone').textContent = 'Enter a valid Ghana or international phone/WhatsApp number.'; isValid = false; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('err-custEmail').textContent = 'Please enter a valid email address or leave blank.'; isValid = false; }
 
     if (state.deliveryZone !== 'pickup' && address.length < 4) {
       document.getElementById('err-custAddress').textContent = 'Please provide a delivery area, landmark, or GhanaPost GPS.';
       isValid = false;
     } else if (state.deliveryZone === 'pickup' && !address) {
-      // Auto-fill pickup location if left blank
-      document.getElementById('custAddress').value = 'Store Pickup — Ejisu / Adum Hub';
+      address = 'Store Pickup — Ejisu / Adum Hub';
+      document.getElementById('custAddress').value = address;
     }
-
     if (!isValid) return;
 
-    // Re-verify stock right before finalizing order
     const prodMap = getProductsMap();
     for (const item of state.cart) {
       const prod = prodMap.get(item.productId);
@@ -933,75 +547,46 @@
     const delivery = calculateDelivery(state.cart, prodMap, state.deliveryZone);
     const grandTotal = subtotal + delivery.fee;
     const orderId = generateOrderReference();
-    const finalAddress = document.getElementById('custAddress').value.trim();
 
     const orderRecord = {
       orderId,
       createdAt: new Date().toLocaleString('en-GH', { dateStyle: 'medium', timeStyle: 'short' }),
-      customer: { fullName, phone, email, address: finalAddress, notes },
+      customer: { fullName, phone, email, address, notes },
       zoneLabel: DELIVERY_ZONES[state.deliveryZone].label,
       paymentMethod,
       items: state.cart.map((item) => {
         const prod = prodMap.get(item.productId);
-        return {
-          title: prod.title,
-          sku: prod.sku,
-          variant: item.variant,
-          qty: item.qty,
-          unitPrice: prod.price,
-          lineTotal: prod.price * item.qty,
-        };
+        return { title: prod.title, sku: prod.sku, variant: item.variant, qty: item.qty, unitPrice: prod.price, lineTotal: prod.price * item.qty };
       }),
       subtotal,
       deliveryFee: delivery.fee,
       grandTotal,
     };
 
-    /* ------------------------------------------------------------------------
-       PRODUCTION INTEGRATION HOOK:
-       To connect Paystack Inline or a REST API backend:
-       1. POST `orderRecord` to `/api/orders` to reserve stock server-side.
-       2. If `paymentMethod` is Card or Mobile Money, initialize PaystackPop.setup({
-            key: 'pk_live_YOUR_PUBLIC_KEY',
-            email: email || `${cleanDigits}@asantemart.com`,
-            amount: Math.round(grandTotal * 100), // Pesewas
-            currency: 'GHS',
-            ref: orderId,
-            callback: (response) => finalizeLocalOrder(orderRecord)
-          }).openIframe();
-       ------------------------------------------------------------------------ */
-
+    /* PRODUCTION HOOK: integrate Paystack here (see original comment) */
     finalizeLocalOrder(orderRecord);
   }
 
   function finalizeLocalOrder(orderRecord) {
-    // 1. Deduct purchased quantities from live stock & persist
     orderRecord.items.forEach((orderedItem) => {
       const product = state.products.find((p) => p.sku === orderedItem.sku);
-      if (product) {
-        product.stock = Math.max(0, product.stock - orderedItem.qty);
-      }
+      if (product) product.stock = Math.max(0, product.stock - orderedItem.qty);
     });
     saveStock();
 
-    // 2. Save order history & clear cart
     try {
       const existingOrders = JSON.parse(localStorage.getItem(STORAGE_KEYS.ORDERS)) || [];
       existingOrders.unshift(orderRecord);
       localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(existingOrders.slice(0, 20)));
-    } catch {
-      // Ignore storage quota errors
-    }
+    } catch { /* ignore quota */ }
 
     state.cart = [];
     saveCart();
     state.lastOrder = orderRecord;
 
-    // 3. Re-render storefront & cart with updated stock counts
     renderCatalog();
     renderCart();
 
-    // 4. Build WhatsApp pre-filled order message
     const whatsappLines = [
       `*NEW ORDER — ${STORE_CONFIG.name}*`,
       `Order Ref: *${orderRecord.orderId}*`,
@@ -1010,324 +595,296 @@
       `Address: ${orderRecord.customer.address}`,
       `Payment: ${orderRecord.paymentMethod}`,
       `---`,
-      ...orderRecord.items.map(
-        (i) => `• ${i.qty}x ${i.title} [${i.variant}] = ${formatMoney(i.lineTotal)}`
-      ),
+      ...orderRecord.items.map((i) => `• ${i.qty}x ${i.title} [${i.variant}] = ${formatMoney(i.lineTotal)}`),
       `---`,
       `Subtotal: ${formatMoney(orderRecord.subtotal)}`,
       `Delivery: ${formatMoney(orderRecord.deliveryFee)}`,
       `*Total Payable: ${formatMoney(orderRecord.grandTotal)}*`,
     ];
-    if (orderRecord.customer.notes) {
-      whatsappLines.push(`Note: ${orderRecord.customer.notes}`);
-    }
+    if (orderRecord.customer.notes) whatsappLines.push(`Note: ${orderRecord.customer.notes}`);
 
-    const whatsappUrl = `https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-      whatsappLines.join('\n')
-    )}`;
+    const whatsappUrl = `https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(whatsappLines.join('\n'))}`;
 
-    // 5. Display Confirmation Receipt
     document.getElementById('checkoutFormView').classList.add('hidden');
     const confirmView = document.getElementById('orderConfirmationView');
     confirmView.classList.remove('hidden');
-
     confirmView.innerHTML = `
       <div class="receipt-badge" aria-hidden="true">✓</div>
       <h2>Order Confirmed!</h2>
-      <p class="muted-text">Thank you, <strong>${escapeHTML(orderRecord.customer.fullName)}</strong>. Your order has been logged for dispatch.</p>
-
+      <p class="muted-text">Thank you, ${escapeHTML(orderRecord.customer.fullName)}. Your order has been received and is being prepared for dispatch.</p>
       <div class="receipt-card">
-        <div class="summary-line"><span>Order Reference:</span><strong>${orderRecord.orderId}</strong></div>
-        <div class="summary-line"><span>Date &amp; Time:</span><span>${orderRecord.createdAt}</span></div>
-        <div class="summary-line"><span>Delivery Method:</span><span>${escapeHTML(orderRecord.zoneLabel)}</span></div>
-        <div class="summary-line"><span>Destination:</span><span>${escapeHTML(orderRecord.customer.address)}</span></div>
-        <div class="summary-line"><span>Payment Method:</span><span>${escapeHTML(orderRecord.paymentMethod)}</span></div>
-        <hr style="border:0;border-top:1px solid var(--color-border);margin:0.75rem 0;" />
-        ${orderRecord.items
-          .map(
-            (i) => `
+        <div class="summary-line"><span>Order Reference</span><strong>${escapeHTML(orderRecord.orderId)}</strong></div>
+        <div class="summary-line"><span>Date</span><span>${escapeHTML(orderRecord.createdAt)}</span></div>
+        <div class="summary-line"><span>Delivery</span><span>${escapeHTML(orderRecord.zoneLabel)}</span></div>
+        <div class="summary-line"><span>Payment</span><span>${escapeHTML(orderRecord.paymentMethod)}</span></div>
+        <hr style="border:none;border-top:1px solid var(--color-border);margin:0.5rem 0;" />
+        ${orderRecord.items.map((i) => `
           <div class="summary-line">
-            <span>${i.qty}&times; ${escapeHTML(i.title)} (${escapeHTML(i.variant)})</span>
-            <span>${formatMoney(i.lineTotal)}</span>
-          </div>
-        `
-          )
-          .join('')}
-        <hr style="border:0;border-top:1px solid var(--color-border);margin:0.75rem 0;" />
+            <span>${i.qty}× ${escapeHTML(i.title)} <small class="muted-text">(${escapeHTML(i.variant)})</small></span>
+            <strong>${formatMoney(i.lineTotal)}</strong>
+          </div>`).join('')}
+        <hr style="border:none;border-top:1px solid var(--color-border);margin:0.5rem 0;" />
         <div class="summary-line"><span>Subtotal</span><span>${formatMoney(orderRecord.subtotal)}</span></div>
-        <div class="summary-line"><span>Delivery Fee</span><span>${formatMoney(orderRecord.deliveryFee)}</span></div>
-        <div class="summary-line" style="font-size:1.08rem;"><strong>Grand Total</strong><strong>${formatMoney(orderRecord.grandTotal)}</strong></div>
+        <div class="summary-line"><span>Delivery</span><span>${orderRecord.deliveryFee === 0 ? 'FREE' : formatMoney(orderRecord.deliveryFee)}</span></div>
+        <div class="total-row grand-total"><span>Total</span><span>${formatMoney(orderRecord.grandTotal)}</span></div>
       </div>
-
       <div class="receipt-actions">
-        <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-lg">
-          Send Order via WhatsApp
-        </a>
-        <button type="button" id="continueShoppingBtn" class="btn btn-outline btn-lg">
-          Continue Shopping
-        </button>
-      </div>
-    `;
+        <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">Send Order via WhatsApp</a>
+        <button type="button" class="btn btn-outline" id="newOrderBtn">Continue Shopping</button>
+      </div>`;
 
-    document.getElementById('continueShoppingBtn')?.addEventListener('click', () => {
+    document.getElementById('newOrderBtn')?.addEventListener('click', () => {
       closeModal('checkoutModal');
-      document.getElementById('checkoutForm').reset();
+      document.getElementById('checkoutForm')?.reset();
+      ['custName', 'custPhone', 'custEmail', 'custAddress'].forEach((id) => {
+        const el = document.getElementById(`err-${id}`);
+        if (el) el.textContent = '';
+      });
     });
   }
 
   /* ==========================================================================
-     11. STORE POLICIES & SPA NAVIGATION
+     11. POLICIES
      ========================================================================== */
-  const POLICIES_DATA = {
-    shipping: {
-      title: 'Shipping & Delivery Policy',
-      html: `
-        <h3>1. Pickup &amp; Dispatch Timelines</h3>
-        <p><strong>Store Pickup (Free):</strong> Orders placed between 8:00 AM and 5:00 PM are ready within 2 hours at our Ejisu Fulfillment Hub or Adum Commercial Pickup Point.</p>
-        <p><strong>Same-City Rider (Ejisu &amp; Greater Kumasi):</strong> Flat GHS 25 rider fee (+GHS 15 handling for heavy appliances/cookware). Orders confirmed before 3:00 PM arrive the same day.</p>
-        <p><strong>Regional / Intercity Dispatch:</strong> Nationwide delivery to Accra, Takoradi, Cape Coast, Sunyani, Ho, and Tamale via VIP/OA Parcel &amp; partner couriers within 24–48 hours.</p>
-      `,
-    },
-    returns: {
-      title: 'Return & Refund Policy',
-      html: `
-        <h3>7-Day Hassle-Free Exchange &amp; Return</h3>
-        <p>We inspect every item prior to dispatch. If you receive a defective, damaged, or incorrect product, notify us within <strong>7 days of delivery</strong> via WhatsApp (+233 24 555 0194) or email.</p>
-        <ul>
-          <li>Items must be returned in original packaging with all accessories intact.</li>
-          <li>For hygiene reasons, opened skincare/shea jars and in-ear earbuds cannot be returned unless faulty on arrival.</li>
-          <li>Approved refunds are processed via Mobile Money or original payment card within 24–48 hours.</li>
-        </ul>
-      `,
-    },
-    privacy: {
-      title: 'Privacy Policy',
-      html: `
-        <h3>How We Protect Your Data</h3>
-        <p>AsanteMart collects only the details required to fulfill and deliver your order: your name, phone/WhatsApp number, delivery address, and optional email receipt address.</p>
-        <p>We never sell or rent customer phone numbers or order histories to third-party marketers. Cart and delivery preferences stored in your browser's localStorage remain strictly on your device.</p>
-      `,
-    },
-    terms: {
-      title: 'Terms of Service',
-      html: `
-        <h3>Storefront Terms</h3>
-        <p>All prices are listed in Ghana Cedis (GHS) and are inclusive of applicable local taxes. Stock availability is updated in real time; in the rare event of a simultaneous stock depletion, our team will offer an immediate full refund or equivalent replacement.</p>
-        <p>For Cash on Delivery (CoD) orders within Ejisu and Kumasi, please ensure someone is reachable at the provided phone number and landmark upon rider arrival.</p>
-      `,
-    },
+  const POLICY_CONTENT = {
+    shipping: `
+      <h3>Shipping &amp; Delivery</h3>
+      <p>Orders placed before 3:00 PM GMT on business days are dispatched the same day.</p>
+      <ul>
+        <li><strong>Store Pickup (Free):</strong> Ready within 2 hours at Ejisu Hub or Adum point.</li>
+        <li><strong>Same-City Rider (GHS 25):</strong> Ejisu &amp; Greater Kumasi — usually 1–4 hours after dispatch. Heavy appliances add GHS 15 handling.</li>
+        <li><strong>Regional / Intercity (from GHS 55):</strong> Accra, Takoradi, Tamale and other regions — 24 to 48 hours via partner couriers. Extra items add GHS 8 each; heavy cargo adds GHS 25.</li>
+      </ul>`,
+    returns: `
+      <h3>Returns &amp; Refunds</h3>
+      <p>We accept returns within 7 days of delivery for unopened items and defective products.</p>
+      <ul>
+        <li>Items must be in original packaging with all accessories.</li>
+        <li>Defective electronics are replaced or refunded after inspection.</li>
+        <li>Refunds are processed via the original payment method within 3–5 business days.</li>
+        <li>Perishables and opened personal-care items are non-returnable for hygiene reasons.</li>
+      </ul>`,
+    privacy: `
+      <h3>Privacy Policy</h3>
+      <p>AsanteMart collects only the information needed to fulfil your order: name, phone number, delivery address, and (optionally) email.</p>
+      <ul>
+        <li>Your data is used to process orders, coordinate deliveries, and provide customer support.</li>
+        <li>We never sell or rent your personal data to third parties.</li>
+        <li>Payment details are handled by licensed payment processors — we do not store card numbers.</li>
+        <li>You may request deletion of your data by emailing hello@asantemart.com.</li>
+      </ul>`,
+    terms: `
+      <h3>Terms of Service</h3>
+      <p>By placing an order on AsanteMart you agree to the following terms:</p>
+      <ul>
+        <li>Prices are shown in Ghana Cedis (GHS) and include applicable taxes.</li>
+        <li>Stock counts are live; in rare cases where an item sells out before dispatch, we will contact you to arrange a substitute or refund.</li>
+        <li>Delivery timelines are estimates and may vary during peak periods or public holidays.</li>
+        <li>Abusive behaviour toward dispatch riders or staff will result in order cancellation.</li>
+      </ul>`,
   };
 
-  function openPolicyModal(policyKey = 'shipping') {
-    const modal = document.getElementById('policyModal');
-    renderPolicyTab(policyKey);
+  function renderPolicy(key) {
+    const content = document.getElementById('policyContent');
+    if (!content) return;
+    content.innerHTML = POLICY_CONTENT[key] || POLICY_CONTENT.shipping;
+    document.querySelectorAll('.policy-tab-btn').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.policyTab === key);
+    });
+  }
+  function openPolicy(key = 'shipping') {
+    renderPolicy(key);
     openModal('policyModal');
   }
 
-  function renderPolicyTab(policyKey) {
-    const entry = POLICIES_DATA[policyKey] || POLICIES_DATA.shipping;
-    document.querySelectorAll('.policy-tab-btn').forEach((btn) => {
-      btn.classList.toggle('active', btn.dataset.policyTab === policyKey);
+  /* ==========================================================================
+     12. ROUTING
+     ========================================================================== */
+  const VIEWS = ['shop', 'about', 'contact'];
+  function routeTo(route) {
+    if (!VIEWS.includes(route)) route = 'shop';
+    VIEWS.forEach((v) => document.getElementById(`view-${v}`)?.classList.toggle('active', v === route));
+    document.querySelectorAll('[data-route]').forEach((el) => {
+      el.classList.toggle('active', el.dataset.route === route);
     });
-    document.getElementById('policyContent').innerHTML = entry.html;
-  }
-
-  function switchRoute(routeName) {
-    const validRoutes = ['shop', 'about', 'contact'];
-    const target = validRoutes.includes(routeName) ? routeName : 'shop';
-
-    document.querySelectorAll('.page-view').forEach((sec) => {
-      sec.classList.toggle('active', sec.id === `view-${target}`);
-    });
-
-    document.querySelectorAll('[data-route]').forEach((link) => {
-      link.classList.toggle('active', link.dataset.route === target);
-    });
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function openModal(modalId) {
-    document.getElementById(modalId)?.classList.remove('hidden');
-  }
-
-  function closeModal(modalId) {
-    document.getElementById(modalId)?.classList.add('hidden');
+    if (window.location.hash !== `#${route}`) history.replaceState(null, '', `#${route}`);
   }
 
   /* ==========================================================================
-     12. EVENT LISTENERS & BOOTSTRAP
+     13. EVENT WIRING
      ========================================================================== */
-  function bindEvents() {
-    // Route navigation
+  function initRouting() {
     document.querySelectorAll('[data-route]').forEach((el) => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
-        const route = el.dataset.route;
-        history.replaceState(null, '', `#${route}`);
-        switchRoute(route);
+        routeTo(el.dataset.route);
       });
     });
+    const initial = (window.location.hash || '#shop').slice(1);
+    routeTo(VIEWS.includes(initial) ? initial : 'shop');
+  }
 
-    // Category tabs
-    document.querySelectorAll('.tab-btn').forEach((btn) => {
+  function initCatalogEvents() {
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    const sortSelect = document.getElementById('sortSelect');
+    const resetBtn = document.getElementById('resetFiltersBtn');
+    const grid = document.getElementById('productGrid');
+
+    searchInput?.addEventListener('input', () => {
+      state.filters.search = searchInput.value;
+      clearBtn.classList.toggle('hidden', !searchInput.value);
+      renderCatalog();
+    });
+    clearBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      state.filters.search = '';
+      clearBtn.classList.add('hidden');
+      renderCatalog();
+      searchInput.focus();
+    });
+    sortSelect?.addEventListener('change', () => {
+      state.filters.sort = sortSelect.value;
+      renderCatalog();
+    });
+
+    document.querySelectorAll('.tab-btn[data-category]').forEach((btn) => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach((b) => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
+        document.querySelectorAll('.tab-btn[data-category]').forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
         });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
         state.filters.category = btn.dataset.category;
         renderCatalog();
       });
     });
 
-    // Live search & clear button
-    const searchInput = document.getElementById('searchInput');
-    const clearSearchBtn = document.getElementById('clearSearchBtn');
-    searchInput.addEventListener('input', () => {
-      state.filters.search = searchInput.value;
-      clearSearchBtn.classList.toggle('hidden', !searchInput.value);
-      renderCatalog();
-    });
-
-    clearSearchBtn.addEventListener('click', () => {
+    resetBtn?.addEventListener('click', () => {
+      state.filters = { category: 'All', search: '', sort: 'featured' };
       searchInput.value = '';
-      state.filters.search = '';
-      clearSearchBtn.classList.add('hidden');
-      renderCatalog();
-      searchInput.focus();
-    });
-
-    // Sort dropdown
-    document.getElementById('sortSelect').addEventListener('change', (e) => {
-      state.filters.sort = e.target.value;
-      renderCatalog();
-    });
-
-    // Reset filters button
-    document.getElementById('resetFiltersBtn').addEventListener('click', () => {
-      state.filters.category = 'All';
-      state.filters.search = '';
-      state.filters.sort = 'featured';
-      searchInput.value = '';
-      clearSearchBtn.classList.add('hidden');
-      document.getElementById('sortSelect').value = 'featured';
-      document.querySelectorAll('.tab-btn').forEach((b) => {
-        const isAll = b.dataset.category === 'All';
-        b.classList.toggle('active', isAll);
-        b.setAttribute('aria-selected', String(isAll));
+      sortSelect.value = 'featured';
+      clearBtn.classList.add('hidden');
+      document.querySelectorAll('.tab-btn[data-category]').forEach((b) => {
+        const active = b.dataset.category === 'All';
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
       });
       renderCatalog();
     });
 
-    // Product Grid Delegation (Detail view & Quick Add)
-    document.getElementById('productGrid').addEventListener('click', (e) => {
-      const actionEl = e.target.closest('[data-action]');
-      if (!actionEl) return;
-      const { action, id } = actionEl.dataset;
-      if (action === 'view-detail') {
-        openProductDetail(id);
-      } else if (action === 'quick-add') {
-        addToCart(id, null, 1);
+    grid?.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-action]');
+      if (!target) return;
+      const id = target.dataset.id;
+      if (target.dataset.action === 'view-detail') openProductDetail(id);
+      else if (target.dataset.action === 'quick-add') {
+        const prod = getProductsMap().get(id);
+        if (!prod) return;
+        if (addToCart(id, prod.variants[0] || 'Standard', 1)) openCartDrawer();
       }
     });
+  }
 
-    // Cart Drawer Controls
+  function initCartEvents() {
     document.getElementById('openCartBtn').addEventListener('click', openCartDrawer);
     document.getElementById('closeCartBtn').addEventListener('click', closeCartDrawer);
     document.getElementById('drawerBackdrop').addEventListener('click', closeCartDrawer);
 
     document.getElementById('cartItemsContainer').addEventListener('click', (e) => {
-      const decBtn = e.target.closest('[data-cart-dec]');
-      const incBtn = e.target.closest('[data-cart-inc]');
-      const delBtn = e.target.closest('[data-cart-del]');
-
-      if (decBtn) updateCartItemQty(Number(decBtn.dataset.cartDec), -1);
-      if (incBtn) updateCartItemQty(Number(incBtn.dataset.cartInc), 1);
-      if (delBtn) removeCartItem(Number(delBtn.dataset.cartDel));
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      if (btn.dataset.cartDec !== undefined) updateCartItemQty(Number(btn.dataset.cartDec), -1);
+      else if (btn.dataset.cartInc !== undefined) updateCartItemQty(Number(btn.dataset.cartInc), 1);
+      else if (btn.dataset.cartDel !== undefined) removeCartItem(Number(btn.dataset.cartDel));
     });
 
-    // Delivery Zone Synchronization (Cart & Checkout)
     document.getElementById('deliveryZoneSelect').addEventListener('change', (e) => {
       state.deliveryZone = e.target.value;
       saveZone();
       renderCart();
     });
 
+    document.getElementById('proceedCheckoutBtn').addEventListener('click', openCheckoutModal);
+  }
+
+  function initCheckoutEvents() {
+    document.getElementById('checkoutForm').addEventListener('submit', handleCheckoutSubmit);
     document.getElementById('checkoutZoneSelect').addEventListener('change', (e) => {
       state.deliveryZone = e.target.value;
       saveZone();
-      renderCart();
       syncCheckoutSummary();
+      document.getElementById('deliveryZoneSelect').value = state.deliveryZone;
     });
+  }
 
-    // Checkout Launch & Submit
-    document.getElementById('proceedCheckoutBtn').addEventListener('click', openCheckoutModal);
-    document.getElementById('checkoutForm').addEventListener('submit', handleCheckoutSubmit);
-
-    // Policies Modal Triggers & Tabs
+  function initPolicyEvents() {
     document.querySelectorAll('[data-open-policy]').forEach((btn) => {
-      btn.addEventListener('click', () => openPolicyModal(btn.dataset.openPolicy));
+      btn.addEventListener('click', () => openPolicy(btn.dataset.openPolicy));
     });
-
     document.querySelectorAll('.policy-tab-btn').forEach((btn) => {
-      btn.addEventListener('click', () => renderPolicyTab(btn.dataset.policyTab));
+      btn.addEventListener('click', () => renderPolicy(btn.dataset.policyTab));
     });
+  }
 
-    // Modal Close Buttons & Backdrop Clicks
+  function initModalEvents() {
     document.querySelectorAll('[data-close-modal]').forEach((btn) => {
       btn.addEventListener('click', () => closeModal(btn.dataset.closeModal));
     });
-
-    document.querySelectorAll('.modal').forEach((modalEl) => {
-      modalEl.addEventListener('click', (e) => {
-        if (e.target === modalEl) closeModal(modalEl.id);
+    document.querySelectorAll('.modal').forEach((modal) => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(modal.id);
       });
     });
-
-    // Escape key closes drawer or active modals
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeCartDrawer();
-        ['productModal', 'checkoutModal', 'policyModal'].forEach(closeModal);
-      }
+      if (e.key !== 'Escape') return;
+      document.querySelectorAll('.modal:not(.hidden)').forEach((m) => closeModal(m.id));
+      closeCartDrawer();
     });
+  }
 
-    // Contact Form Handler
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
+  function initContactForm() {
+    const form = document.getElementById('contactForm');
+    const feedback = document.getElementById('contactFeedback');
+    if (!form || !feedback) return;
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('contactName').value.trim();
       const phone = document.getElementById('contactPhone').value.trim();
-      const msg = document.getElementById('contactMessage').value.trim();
-      const feedback = document.getElementById('contactFeedback');
-
-      if (!name || !phone || !msg) {
+      const message = document.getElementById('contactMessage').value.trim();
+      if (name.length < 2 || phone.replace(/\D/g, '').length < 9 || message.length < 4) {
+        feedback.textContent = 'Please complete all fields with valid details.';
         feedback.style.color = 'var(--color-danger)';
-        feedback.textContent = 'Please complete all required fields.';
         return;
       }
-
+      feedback.textContent = `Thanks, ${name}! We've received your message and will reply on WhatsApp shortly.`;
       feedback.style.color = 'var(--color-success)';
-      feedback.textContent = `Thank you, ${name}! Our Ejisu support desk will reply to ${phone} shortly.`;
-      e.target.reset();
+      form.reset();
     });
   }
 
+  /* ==========================================================================
+     14. BOOT
+     ========================================================================== */
   function init() {
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
     loadPersistedState();
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
     renderCatalog();
     renderCart();
-    bindEvents();
-
-    // Support initial URL hash (#about, #contact, #shop)
-    const initialHash = window.location.hash.replace('#', '');
-    if (['about', 'contact'].includes(initialHash)) {
-      switchRoute(initialHash);
-    }
+    initRouting();
+    initCatalogEvents();
+    initCartEvents();
+    initCheckoutEvents();
+    initPolicyEvents();
+    initModalEvents();
+    initContactForm();
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
